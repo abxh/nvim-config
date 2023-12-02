@@ -1,8 +1,8 @@
 # nvim
 
-The configuration of neovim in particular can be subject to a lot of changes. This repo
-is seperated from [abxh/dotfiles](https://github.com/abxh/dotfiles) and added as a submodule
-to exclude minor changes and keeping things relatively stable.
+The configuration of neovim in particular can be subject to a lot of changes. As such, this
+repo is seperated from [abxh/dotfiles](https://github.com/abxh/dotfiles) and added as a
+submodule to exclude minor changes and keeping things working and relatively stable.
 
 Neovim is very extensible editor with a evolving ecosystem of plugins. There are many
 ways to the do the same thing. Some are better and others are worse in some aspects.
