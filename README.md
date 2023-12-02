@@ -15,3 +15,6 @@ for a neovim distro, then consult the internet and use the most popular ones. Th
 maintained and they are probably configured better.
 
 With that said, feel free to copy what you like of my configuration.
+
+## Change Log
+- [42b2138](https://github.com/abxh/nvim-config/tree/42b21380de533658d178dacb89372001a845dd7a): initial commits.
