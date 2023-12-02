@@ -6,9 +6,7 @@ local lsp_servers = {
   "pyright",
   "clangd",
 }
-local lsp_servers_manual = {
-  "rust_analyzer"
-}
+local lsp_servers_manual = {}
 local diagnostic_opts = {
   header = false,
   border = "none",
@@ -37,7 +35,7 @@ require("neoconf").setup()
 local lsp_zero = require("lsp-zero")
 lsp_zero.on_attach(function(_, bufnr)
   for _, v in pairs(keymaps.lsp) do
-    vim.keymap.set(v[1], v[2], vim.lsp.buf[v[3]], { buffer = bufnr})
+    vim.keymap.set(v[1], v[2], vim.lsp.buf[v[3]], { buffer = bufnr })
   end
   require("lsp_signature").on_attach(lsp_signature_opts, bufnr)
 end)
@@ -60,15 +58,3 @@ for _, server_name in pairs(lsp_servers) do
   lspconfig[server_name].capabilities = lsp_zero.get_capabilities()
 end
 lsp_zero.set_sign_icons({ error = "󰅚", warn = "󰀪", hint = "󰌶", info = "" })
-
-local rt = require("rust-tools")
-rt.setup({
-  server = {
-    on_attach = function(_, bufnr)
-      -- Hover actions
-      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-    end,
-  },
-}) -- todo: set these keybindings from keymaps.lua

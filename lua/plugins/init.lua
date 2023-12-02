@@ -97,8 +97,6 @@ return {
         "folke/neoconf.nvim",
         "folke/neodev.nvim",
         "b0o/schemastore.nvim",
-
-        "simrat39/rust-tools.nvim",
       },
       config = function()
         require("plugins.lsp")
