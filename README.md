@@ -14,4 +14,7 @@ Do not regard this neovim configuration as some sort of a neovim distro. If you 
 for a neovim distro, then consult the internet and use the most popular ones. They are better
 maintained and they are probably configured better.
 
-If you like some of the configuration I done, then feel free to copy them.
+If you want something to look like the screenshots, use the [ellisonleao/gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)
+with the colors specified [here](https://github.com/abxh/nvim-config/blob/main/lua/plugins/gruvbox.lua).
+
+Otherwise, feel free to copy what you like of my configuration.
