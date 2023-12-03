@@ -84,7 +84,7 @@ return {
         "petertriho/cmp-git",
         "hrsh7th/cmp-calc",
 
-        { "L3MON4D3/LuaSnip",        version = "v2.*", build = "make install_jsregexp" },
+        { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
         "rafamadriz/friendly-snippets",
         "saadparwaiz1/cmp_luasnip",
 
@@ -102,6 +102,18 @@ return {
         require("plugins.lsp")
         require("plugins.cmp")
         require("plugins.null-ls")
+      end,
+    },
+    -- }}}
+
+    -- mini.files: {{{
+    {
+      "echasnovski/mini.files",
+      opts = {
+        mappings = require("keymaps").mini_files,
+      },
+      init = function()
+        vim.keymap.set("n", require("keymaps").mini_files_toggle, require("mini.files").open, {})
       end,
     },
     -- }}}
@@ -151,6 +163,14 @@ return {
 
     -- others: {{{
     "tpope/vim-sleuth",
+    {
+      "ton/vim-bufsurf",
+      init = function()
+        for _, value in pairs(require("keymaps").bufsurf) do
+          vim.keymap.set(unpack(value))
+        end
+      end,
+    },
     -- }}}
 
     -- nonessential: {{{
@@ -167,27 +187,6 @@ return {
       config = function()
         require("colorizer").setup()
       end,
-    },
-    -- }}}
-
-    -- simple tabline: {{{
-    {
-      "crispgm/nvim-tabline",
-      opts = {
-        show_index = false,
-        brackets = { "", "" },
-      },
-    },
-    -- }}}
-
-    -- unique file explorer: {{{
-    {
-      'echasnovski/mini.files',
-      opts = {
-      mappings = require("keymaps").mini_files },
-      init = function()
-        vim.keymap.set("n", require("keymaps").mini_files_toggle, require("mini.files").open, {})
-      end
     },
     -- }}}
 
@@ -217,7 +216,7 @@ return {
         color_icons = false, -- use default icons color.
       },
       init = function()
-        require("nvim-web-devicons").set_default_icon('', '#d4be98', 95)
+        require("nvim-web-devicons").set_default_icon("", "#d4be98", 95)
       end,
     },
     -- }}}

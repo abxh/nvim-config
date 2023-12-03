@@ -3,8 +3,8 @@ local M = {}
 M.leaderkey = ","
 
 M.core = {
-  -- cancel search with <Esc>
-  { "n", "<Esc>", ":noh<CR>" },
+  -- cancel search with q
+  { "n", "q", ":noh<CR>" },
 
   -- stay in indent mode
   { "v", "<", "<gv^" },
@@ -37,11 +37,18 @@ M.core = {
   { "n", "<A-S-h>", ":vertical resize -2<CR>" },
   { "n", "<A-S-l>", ":vertical resize +2<CR>" },
 
-  -- tab navigation
-  { "n", "<A-,>", "gT" },
-  { "n", "<A-.>", "gt" },
-  { "n", "<A-Enter>", ":tabnew<CR>" },
+  -- buffer/tab navigation. using bufsurf instead.
+  -- { "n", "<A-,>", ":bprevious<CR>" },
+  -- { "n", "<A-.>", ":bnext<CR>" },
+  -- { "n", "<A-,>", "gT" },
+  -- { "n", "<A-.>", "gt" },
+  -- { "n", "<A-Enter>", ":tabnew<CR>" },
   -- { "n", "<A-S-q>", ":tabclose<CR>" }, -- A-S-q -> :q also closes tabs.
+}
+
+M.bufsurf = {
+  { "n", "<A-.>", ":BufSurfForward<CR>" },
+  { "n", "<A-,>", ":BufSurfBack<CR>" },
 }
 
 M.treesitter_incremental_selection = {

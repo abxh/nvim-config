@@ -28,6 +28,9 @@ o.viewdir = "/tmp/view//"
 o.ignorecase = true
 o.smartcase = true
 
+o.updatetime = 300
+o.updatetime = 500
+
 o.iskeyword:append("-")
 o.whichwrap:append("h,l")
 -- }}}
