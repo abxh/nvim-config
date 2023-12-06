@@ -11,10 +11,11 @@ return {
 
     -- colorscheme: {{{
     {
-      "ellisonleao/gruvbox.nvim",
+      "sainnhe/gruvbox-material",
       priority = 1000,
       init = function()
-        require("plugins.gruvbox")
+        vim.opt.termguicolors = true
+        vim.cmd("colorscheme gruvbox-material")
       end,
     },
     -- }}}
@@ -171,6 +172,12 @@ return {
         end
       end,
     },
+    {
+      "mbbill/undotree",
+      init = function()
+        vim.keymap.set("n", require("keymaps").undotree_toggle, vim.cmd.UndotreeToggle)
+      end,
+    },
     -- }}}
 
     -- nonessential: {{{
@@ -273,7 +280,7 @@ return {
 
     -- }}}
   },
-  { install = { colorscheme = { "gruvbox" } } },
+  { install = { colorscheme = { "gruvbox-material" } } },
 }
 
 -- vim: fdm=marker

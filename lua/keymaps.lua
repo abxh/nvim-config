@@ -3,27 +3,41 @@ local M = {}
 M.leaderkey = ","
 
 M.core = {
-  -- cancel search with q
+  -- clear search
   { "n", "q", ":noh<CR>" },
 
-  -- stay in indent mode
-  { "v", "<", "<gv^" },
+  -- paste as usual
+  { "x", "p", '"_dP' },
+
+  -- alternate Esc
+  { "i", "<C-c>", "<Esc>" },
+
+  -- move text
+  { "v", "J", ":m '>+1<CR>gv=gv" },
+  { "v", "K", ":m '<-2<CR>gv=gv" },
+
+  -- fix cursor at position while doing these actions
+  { "n", "J", "mzJ`z" },
+  { "v", "<", "<gv^" }, -- stay in indent mode
   { "v", ">", ">gv^" },
 
-  -- replace without copying
-  { "v", "p", "P" },
+  -- stay in the middle while doing these actions
+  { "n", "<C-d>", "<C-d>zz" },
+  { "n", "<C-u>", "<C-u>zz" },
+  { "n", "n", "nzzzv" },
+  { "n", "N", "Nzzzv" },
 
-  -- access global clipboard with Ctrl + {c,x,v}
-  { "v", "<C-c>", '"+y' },
-  { "v", "<C-x>", '"+c<Esc>' },
-  { "n", "<C-v>", '"+p' },
-  { "v", "<C-v>", 'c<Esc>"+p' },
-  { "i", "<C-v>", "<C-r><C-o>+" },
+  -- access global clipboard
+  { { "n", "v" }, "<leader>y", '"+y' },
+  { "n", "<leader>Y", '"+Y' },
+  { { "n", "v" }, "<leader>d", '"_d' },
+  { "n", "<leader>p", '"+p'},
+  { "v", "<leader>p", 'c<Esc>"+p' },
 
   -- windows split / close
   { "n", "<A-v>", ":vsplit<CR>" },
   { "n", "<A-b>", ":split<CR>" },
-  { "n", "<A-S-q>", ":q<CR>" },
+  { "n", "<A-S-q>", "ZZ" },
 
   -- window navigation
   { "n", "<A-k>", "<C-w>k" },
@@ -36,14 +50,6 @@ M.core = {
   { "n", "<A-S-j>", ":resize -2<CR>" },
   { "n", "<A-S-h>", ":vertical resize -2<CR>" },
   { "n", "<A-S-l>", ":vertical resize +2<CR>" },
-
-  -- buffer/tab navigation. using bufsurf instead.
-  -- { "n", "<A-,>", ":bprevious<CR>" },
-  -- { "n", "<A-.>", ":bnext<CR>" },
-  -- { "n", "<A-,>", "gT" },
-  -- { "n", "<A-.>", "gt" },
-  -- { "n", "<A-Enter>", ":tabnew<CR>" },
-  -- { "n", "<A-S-q>", ":tabclose<CR>" }, -- A-S-q -> :q also closes tabs.
 }
 
 M.bufsurf = {
@@ -179,5 +185,7 @@ M.mini_files = {
   trim_left = "<",
   trim_right = ">",
 }
+
+M.undotree_toggle = "<leader>u"
 
 return M

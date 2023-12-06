@@ -1,7 +1,6 @@
 require("autocmds")
 vim.cmd("source " .. vim.fn.stdpath("config") .. "/lua/autocmds.vim")
 
--- set core options: {{{
 local o = vim.opt
 
 o.wrap = false
@@ -9,31 +8,30 @@ o.number = true
 o.numberwidth = 2
 o.relativenumber = true
 o.signcolumn = "yes"
-o.cursorline = true
-o.fillchars = { eob = " " }
-o.splitbelow = true
+o.scrolloff = 8
+o.sidescrolloff = 8
 o.splitright = true
-o.showtabline = 1
-o.scrolloff = 5
-o.sidescrolloff = 5
+o.splitbelow = true
+
+o.tabstop = 4
+o.softtabstop = 4
+o.shiftwidth = 4
+o.expandtab = true
+
+o.undofile = true
+o.undodir = os.getenv("HOME") .. "/desktop/.undodir"
 
 o.writebackup = false
 o.backup = false
 o.swapfile = false
-o.undofile = true
-o.undodir = "/tmp/undo//"
 o.viewoptions = "folds,cursor,"
 o.viewdir = "/tmp/view//"
 
 o.ignorecase = true
 o.smartcase = true
 
-o.updatetime = 300
-o.updatetime = 500
-
-o.iskeyword:append("-")
-o.whichwrap:append("h,l")
--- }}}
+o.updatetime = 50
+o.isfname:append("@-@")
 
 local keymaps = require("keymaps")
 local opts = { noremap = true, silent = true }
@@ -59,5 +57,3 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup(unpack(require("plugins")))
-
--- vim: fdm=marker
