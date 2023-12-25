@@ -1,4 +1,4 @@
-# nvim
+# nvim-config
 
 This configuration is not meant to be used as a neovim distro. If you are looking for one, then consult the internet.
 
