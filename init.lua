@@ -19,7 +19,12 @@ o.shiftwidth = 4
 o.expandtab = true
 
 o.undofile = true
-o.undodir = os.getenv("HOME") .. "/desktop/.undodir"
+local handle = io.popen("xdg-user-dir DESKTOP")
+if (handle ~= nil) then
+  local result = handle:read("*l")
+  handle:close()
+  o.undodir = result .. "/.undodir"
+end
 
 o.writebackup = false
 o.backup = false
