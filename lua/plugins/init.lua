@@ -97,7 +97,9 @@ return {
 
         "folke/neoconf.nvim",
         "folke/neodev.nvim",
+
         "b0o/schemastore.nvim",
+        { "microsoft/python-type-stubs", cond = false },
       },
       config = function()
         require("plugins.lsp")
