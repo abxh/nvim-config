@@ -4,7 +4,7 @@ M.leaderkey = ","
 
 M.core = {
   -- clear search
-  { "n", "q", ":noh<CR>" },
+  { "n", "<Esc>", ":noh<CR>" },
 
   -- paste as usual
   { "x", "p", '"_dP' },
