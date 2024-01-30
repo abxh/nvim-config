@@ -16,7 +16,16 @@ return {
       init = function()
         vim.opt.termguicolors = true
         vim.cmd("colorscheme gruvbox-material")
-      end,
+        local hl_overrides = {
+          NormalFloat = { bg = "#3a3735" },
+          FloatBorder = { bg = "#3a3735" },
+          MiniFilesTitle = { bg = "#3a3735", fg = "#ebdbb2" },
+          MiniFilesTitleFocused = { bg = "#3a3735", fg = "#ebdbb2", bold=true },
+        }
+        for key, value in pairs(hl_overrides) do
+          vim.api.nvim_set_hl(0, key, value)
+        end
+      end
     },
     -- }}}
 
