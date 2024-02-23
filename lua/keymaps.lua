@@ -24,8 +24,8 @@ M.core = {
   -- stay in the middle while doing these actions
   { "n", "<C-d>", "<C-d>zz" },
   { "n", "<C-u>", "<C-u>zz" },
-  { "n", "n", "nzzzv" },
-  { "n", "N", "Nzzzv" },
+  -- { "n", "n", "nzzzv" }, -- does not work for some reason. todo: fix this
+  -- { "n", "N", "Nzzzv" },
 
   -- access global clipboard
   { { "n", "v" }, "<leader>y", '"+y' },
@@ -90,13 +90,13 @@ M.lsp = {
   { "n", "gd", "definition" },
   { "n", "gD", "declaration" },
   { "n", "gi", "implementation" },
-  { "n", "go", "type_definition" },
+  { "n", "gt", "type_definition" },
 
   { "n", "gr", "references" },
-  { "n", "<C-h>", "signature_help" },
+  -- { "n", "<C-h>", "signature_help" }, -- never used this. todo: find out what this is.
   { "n", "<F2>", "rename" },
   { "n", "<F3>", "format" },
-  { "n", "<F4>", "code_action" },
+  -- { "n", "<F4>", "code_action" }, -- never used this. todo: find out what this is.
 }
 
 M.diagnostic = {
@@ -124,6 +124,16 @@ M.cmp = {
 M.lsp_zero_cmp_actions = {
   { "<Tab>", "luasnip_supertab", nil },
   { "<S-Tab>", "luasnip_shift_supertab", nil },
+}
+
+M.dap = {
+  -- set breakpoint
+  { "n", "<leader>b", "toggle_breakpoint" },
+}
+
+M.dapui = {
+  -- launch debugger
+  { "n", "<leader>d", "toggle" },
 }
 
 M.comment = {

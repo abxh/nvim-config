@@ -20,12 +20,12 @@ return {
           NormalFloat = { bg = "#3a3735" },
           FloatBorder = { bg = "#3a3735" },
           MiniFilesTitle = { bg = "#3a3735", fg = "#ebdbb2" },
-          MiniFilesTitleFocused = { bg = "#3a3735", fg = "#ebdbb2", bold=true },
+          MiniFilesTitleFocused = { bg = "#3a3735", fg = "#ebdbb2", bold = true },
         }
         for key, value in pairs(hl_overrides) do
           vim.api.nvim_set_hl(0, key, value)
         end
-      end
+      end,
     },
     -- }}}
 
@@ -94,6 +94,11 @@ return {
         "petertriho/cmp-git",
         "hrsh7th/cmp-calc",
 
+        "jay-babu/mason-nvim-dap.nvim",
+        "mfussenegger/nvim-dap",
+        "rcarriga/nvim-dap-ui",
+        "theHamsta/nvim-dap-virtual-text",
+
         { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
         "rafamadriz/friendly-snippets",
         "saadparwaiz1/cmp_luasnip",
@@ -114,6 +119,7 @@ return {
         require("plugins.lsp")
         require("plugins.cmp")
         require("plugins.null-ls")
+        require("plugins.dap")
       end,
     },
     -- }}}
