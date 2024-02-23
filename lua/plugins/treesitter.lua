@@ -14,7 +14,7 @@ require("nvim-treesitter.configs").setup({
     "bash",
     "python",
     "markdown",
-    "haskell",
+    "nasm",
   },
   highlight = {
     enable = true,
