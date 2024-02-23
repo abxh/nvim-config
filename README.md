@@ -4,9 +4,10 @@ This configuration is not meant to be used as a neovim distro. If you are lookin
 I am not giving any garantees.
 
 **Rice:**<br>
-Medium [gruvbox-material](https://github.com/sainnhe/gruvbox-material) color theme with some [overrides](https://github.com/abxh/nvim-config/blob/main/lua/plugins/init.lua#L20-L23).
+[gruvbox-material](https://github.com/sainnhe/gruvbox-material) color theme with some [overrides](https://github.com/abxh/nvim-config/blob/main/lua/plugins/init.lua#L20-L23).
 
 ## Change Log
+- [b193265](https://github.com/abxh/nvim-config/tree/b1932657693273b20ceffd80398309235a5492a6): setup nvim-dap. and add support of nasm.
 - [c667a36](https://github.com/abxh/nvim-config/tree/c667a362a36c80cd9c950e89f6c6102cc9da47f6): use previous nicer mini.files colors.
 - [8430cdf](https://github.com/abxh/nvim-config/tree/8430cdf5c3f883885c720c87b75275dc99f43b1c): fix pyright slowdown bug by adding python stubs
 - [e01df3b](https://github.com/abxh/nvim-config/tree/e01df3b1192b3e4fa2932146e8015661ca7989fd): use original gruvbox material + modify options/keymaps + add undotree.
