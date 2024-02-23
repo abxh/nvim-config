@@ -1,6 +1,10 @@
 # nvim-config
 
 This configuration is not meant to be used as a neovim distro. If you are looking for one, then consult the internet.
+I am not giving any garantees.
+
+**Rice:**<br>
+Medium [gruvbox-material](https://github.com/sainnhe/gruvbox-material) color theme with some [overrides](https://github.com/abxh/nvim-config/blob/main/lua/plugins/init.lua#L20-L23).
 
 ## Change Log
 - [c667a36](https://github.com/abxh/nvim-config/tree/c667a362a36c80cd9c950e89f6c6102cc9da47f6): use previous nicer mini.files colors.
