@@ -19,7 +19,7 @@ local diagnostic_opts = {
 local lsp_signature_opts = {
   bind = true,
   handler_opts = {
-    border = 'single'
+    border = "single",
   },
   hint_enable = false,
 }
@@ -29,7 +29,7 @@ for _, v in pairs(keymaps.diagnostic) do
   vim.keymap.set(v[1], v[2], vim.diagnostic[v[3]], {})
 end
 
-require("neodev").setup()
+require("neodev").setup({ library = { plugins = { "nvim-dap-ui" }, types = true } })
 require("neoconf").setup()
 
 local lsp_zero = require("lsp-zero")
