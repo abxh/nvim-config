@@ -59,7 +59,7 @@ dap.configurations.c = {
 }
 
 dap.configurations.cpp = dap.configurations.c
-dap.configurations.asm = dap.configurations.c
+dap.configurations.nasm = dap.configurations.c
 
 require("dapui").setup()
 require("nvim-dap-virtual-text").setup()
