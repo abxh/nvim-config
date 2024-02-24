@@ -5,7 +5,7 @@ require("mason-nvim-dap").setup({
 vim.g.dap_virtual_text = true
 
 vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "red", linehl = "", numhl = "" })
-vim.fn.sign_define("DapStopped", { text = "■", texthl = "blue", linehl = "", numhl = "" })
+vim.fn.sign_define("DapStopped", { text = "▶", texthl = "yellow", linehl = "", numhl = "" })
 
 local dap = require('dap')
 
