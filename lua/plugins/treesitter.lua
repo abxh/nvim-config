@@ -11,6 +11,7 @@ require("nvim-treesitter.configs").setup({
     "yaml",
 
     -- my own reqs (for now):
+    "cpp",
     "bash",
     "python",
     "markdown",
