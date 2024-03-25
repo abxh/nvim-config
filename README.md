@@ -4,7 +4,7 @@ This configuration is not meant to be used as a neovim distro. If you are lookin
 I am not giving any garantees.
 
 **Rice:**<br>
-[gruvbox-material](https://github.com/sainnhe/gruvbox-material) color theme with some [overrides](https://github.com/abxh/nvim-config/blob/main/lua/plugins/init.lua#L20-L23).
+[gruvbox-material](https://github.com/sainnhe/gruvbox-material) color theme with some [overrides](https://github.com/abxh/nvim-config/blob/5e75227c09713d9385ce3f4fe48c930459040592/lua/plugins/init.lua#L20-L23).
 
 ## Change Log
 - [b193265](https://github.com/abxh/nvim-config/tree/b1932657693273b20ceffd80398309235a5492a6): setup nvim-dap. and add support of nasm.
