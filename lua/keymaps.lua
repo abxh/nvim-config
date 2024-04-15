@@ -31,13 +31,14 @@ M.core = {
   { { "n", "v" }, "<leader>y", '"+y' },
   { "n", "<leader>Y", '"+Y' },
   { { "n", "v" }, "<leader>d", '"_d' },
-  { "n", "<leader>p", '"+p'},
+  { "n", "<leader>p", '"+p' },
   { "v", "<leader>p", 'c<Esc>"+p' },
 
   -- windows split / close
   { "n", "<A-v>", ":vsplit<CR>" },
   { "n", "<A-b>", ":split<CR>" },
-  { "n", "<A-S-q>", "ZZ" },
+  { "n", "<A-S-q>", ":q!<CR>" },
+  { "t", "<A-S-q>", "<C-\\><C-n>:q!<CR>" },
 
   -- window navigation
   { "n", "<A-k>", "<C-w>k" },
@@ -55,6 +56,10 @@ M.core = {
 M.bufsurf = {
   { "n", "<A-.>", ":BufSurfForward<CR>" },
   { "n", "<A-,>", ":BufSurfBack<CR>" },
+}
+
+M.bufterm = {
+  { "n", "<A-t>", ":BufTermEnter<CR>" },
 }
 
 M.treesitter_incremental_selection = {
@@ -183,7 +188,7 @@ M.fugitive = {
 M.mini_files_toggle = "<leader>m"
 
 M.mini_files = {
-  close = "q",
+  close = "<Esc>",
   go_in = "l",
   go_in_plus = "L",
   go_out = "h",

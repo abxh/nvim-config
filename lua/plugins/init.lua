@@ -94,6 +94,7 @@ return {
         "petertriho/cmp-git",
         "hrsh7th/cmp-calc",
 
+        "nvim-neotest/nvim-nio",
         "jay-babu/mason-nvim-dap.nvim",
         "mfussenegger/nvim-dap",
         "rcarriga/nvim-dap-ui",
@@ -188,6 +189,15 @@ return {
           vim.keymap.set(unpack(value))
         end
       end,
+    },
+    {
+      "boltlessengineer/bufterm.nvim",
+      init = function()
+        for _, value in pairs(require("keymaps").bufterm) do
+          vim.keymap.set(unpack(value))
+        end
+      end,
+      config = true,
     },
     {
       "mbbill/undotree",
