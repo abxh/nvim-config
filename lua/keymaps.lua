@@ -34,11 +34,13 @@ M.core = {
   { "n", "<leader>p", '"+p' },
   { "v", "<leader>p", 'c<Esc>"+p' },
 
+  -- exit terminal
+  { "t", "<A-S-q>", "<C-\\><C-n>" },
+
   -- windows split / close
   { "n", "<A-v>", ":vsplit<CR>" },
   { "n", "<A-b>", ":split<CR>" },
   { "n", "<A-S-q>", ":q!<CR>" },
-  { "t", "<A-S-q>", "<C-\\><C-n>:q!<CR>" },
 
   -- window navigation
   { "n", "<A-k>", "<C-w>k" },
