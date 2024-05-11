@@ -5,7 +5,6 @@ local lsp_servers = {
   "yamlls",
   "pyright",
   "clangd",
-  "mesonlsp",
 }
 local lsp_servers_manual = {}
 local diagnostic_opts = {
