@@ -81,9 +81,10 @@ dapui.setup({
     {
       elements = {
         "scopes",
+        "stacks",
       },
       size = 0.3,
-      position = "right",
+      position = "left",
     },
     {
       elements = {
