@@ -3,14 +3,14 @@ local cmp_sources = {
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "luasnip" },
-  },
-  {
-    { name = "calc" },
+    { name = "doxygen" },
   },
   {
     { name = "path" },
   },
-  -- { { name = 'buffer' }, },
+  -- {
+  -- { name = 'buffer' },
+  -- }
 }
 
 local cmp = require("cmp")

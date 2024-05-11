@@ -92,7 +92,7 @@ return {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-cmdline",
         "petertriho/cmp-git",
-        "hrsh7th/cmp-calc",
+        "paopaol/cmp-doxygen",
 
         "nvim-neotest/nvim-nio",
         "jay-babu/mason-nvim-dap.nvim",
