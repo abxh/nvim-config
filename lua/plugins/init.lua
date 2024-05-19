@@ -132,7 +132,7 @@ return {
         mappings = require("keymaps").mini_files,
       },
       init = function()
-        vim.keymap.set("n", require("keymaps").mini_files_toggle, require("mini.files").open, {})
+        vim.keymap.set(unpack(require("keymaps").special.mini_files_toggle(require("mini.files").open)))
       end,
     },
     -- }}}
@@ -202,7 +202,7 @@ return {
     {
       "mbbill/undotree",
       init = function()
-        vim.keymap.set("n", require("keymaps").undotree_toggle, vim.cmd.UndotreeToggle)
+        vim.keymap.set(unpack(require("keymaps").special.undotree_toggle(vim.cmd.UndotreeToggle)))
       end,
     },
     -- }}}
@@ -288,7 +288,7 @@ return {
         vim.diagnostic.config({ virtual_text = false, virtual_lines = false })
 
         if require("keymaps").lsp_lines_toggle ~= nil then
-          vim.keymap.set("n", require("keymaps").lsp_lines_toggle, require("lsp_lines").toggle)
+          vim.keymap.set(unpack(require("keymaps").special.lsp_lines_toggle(require("lsp_lines").toggle)))
         end
       end,
       opts = {},
@@ -300,7 +300,11 @@ return {
     {
       "rcarriga/nvim-notify",
       init = function()
+        vim.opt.termguicolors = true
         vim.notify = require("notify")
+      end,
+      config = function()
+        require("notify").setup({ render = "wrapped-compact" })
       end,
     },
     -- }}}

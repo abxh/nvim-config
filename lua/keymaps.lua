@@ -1,67 +1,85 @@
 local M = {}
 
+M.default_opts = { silent = true }
+
 M.leaderkey = ","
 
 M.core = {
-  -- clear search
-  { "n", "<Esc>", ":noh<CR>" },
-
-  -- paste as usual
-  { "x", "p", '"_dP' },
+  {
+    "n",
+    "<Esc>",
+    function()
+      -- close floating windows
+      -- source: https://www.reddit.com/r/neovim/comments/1335pfc/comment/jiaagyi
+      for _, win in ipairs(vim.api.nvim_list_wins()) do
+        if vim.api.nvim_win_get_config(win).relative == "win" then
+          vim.api.nvim_win_close(win, false)
+        end
+      end
+      if vim.bo.modifiable then
+        -- clear search
+        vim.cmd("nohlsearch")
+      end
+    end,
+    M.default_opts,
+  },
 
   -- alternate Esc
-  { "i", "<C-c>", "<Esc>" },
+  { "i", "<C-c>", "<Esc>", M.default_opts },
+
+  -- paste as usual
+  { "x", "p", '"_dP', M.default_opts },
 
   -- move text
-  { "v", "J", ":m '>+1<CR>gv=gv" },
-  { "v", "K", ":m '<-2<CR>gv=gv" },
+  { "v", "J", ":m '>+1<CR>gv=gv", M.default_opts },
+  { "v", "K", ":m '<-2<CR>gv=gv", M.default_opts },
 
   -- fix cursor at position while doing these actions
-  { "n", "J", "mzJ`z" },
-  { "v", "<", "<gv^" }, -- stay in indent mode
-  { "v", ">", ">gv^" },
+  { "n", "J", "mzJ`z", M.default_opts },
+  { "v", "<", "<gv^", M.default_opts }, -- stay in indent mode
+  { "v", ">", ">gv^", M.default_opts },
 
   -- stay in the middle while doing these actions
-  { "n", "<C-d>", "<C-d>zz" },
-  { "n", "<C-u>", "<C-u>zz" },
-  -- { "n", "n", "nzzzv" }, -- does not work for some reason. todo: fix this
-  -- { "n", "N", "Nzzzv" },
+  { "n", "<C-d>", "<C-d>zz", M.default_opts },
+  { "n", "<C-u>", "<C-u>zz", M.default_opts },
+  -- { "n", "n", "nzzzv", M.default_opts }, -- does not work for some reason. todo: fix this
+  -- { "n", "N", "Nzzzv", M.default_opts },
 
   -- access global clipboard
-  { { "n", "v" }, "<leader>y", '"+y' },
-  { "n", "<leader>Y", '"+Y' },
-  { { "n", "v" }, "<leader>d", '"_d' },
-  { "n", "<leader>p", '"+p' },
-  { "v", "<leader>p", 'c<Esc>"+p' },
+  { { "n", "v" }, "<leader>y", '"+y', M.default_opts },
+  { "n", "<leader>Y", '"+Y', M.default_opts },
+  { { "n", "v" }, "<leader>d", '"_d', M.default_opts },
+  { "n", "<leader>p", '"+p', M.default_opts },
+  { "v", "<leader>p", 'c<Esc>"+p', M.default_opts },
 
   -- exit terminal
-  { "t", "<A-S-q>", "<C-\\><C-n>" },
+  { "t", "<A-S-q>", "<C-\\><C-n>", M.default_opts },
 
   -- windows split / close
-  { "n", "<A-v>", ":vsplit<CR>" },
-  { "n", "<A-b>", ":split<CR>" },
-  { "n", "<A-S-q>", ":q!<CR>" },
+  { "n", "<A-v>", ":vsplit<CR>", M.default_opts },
+  { "n", "<A-b>", ":split<CR>", M.default_opts },
+  { "n", "<A-S-q>", ":q!<CR>", M.default_opts },
 
   -- window navigation
-  { "n", "<A-k>", "<C-w>k" },
-  { "n", "<A-j>", "<C-w>j" },
-  { "n", "<A-h>", "<C-w>h" },
-  { "n", "<A-l>", "<C-w>l" },
+  { "n", "<A-k>", "<C-w>k", M.default_opts },
+  { "n", "<A-j>", "<C-w>j", M.default_opts },
+  { "n", "<A-h>", "<C-w>h", M.default_opts },
+  { "n", "<A-l>", "<C-w>l", M.default_opts },
 
   -- window resize
-  { "n", "<A-S-k>", ":resize +2<CR>" },
-  { "n", "<A-S-j>", ":resize -2<CR>" },
-  { "n", "<A-S-h>", ":vertical resize -2<CR>" },
-  { "n", "<A-S-l>", ":vertical resize +2<CR>" },
+  { "n", "<A-S-k>", ":resize +2<CR>", M.default_opts },
+  { "n", "<A-S-j>", ":resize -2<CR>", M.default_opts },
+  { "n", "<A-S-h>", ":vertical resize -2<CR>", M.default_opts },
+  { "n", "<A-S-l>", ":vertical resize +2<CR>", M.default_opts },
 }
 
 M.bufsurf = {
-  { "n", "<A-.>", ":BufSurfForward<CR>" },
-  { "n", "<A-,>", ":BufSurfBack<CR>" },
+  { "n", "<A-.>", ":BufSurfForward<CR>", M.default_opts },
+  { "n", "<A-,>", ":BufSurfBack<CR>", M.default_opts },
 }
 
 M.bufterm = {
-  { "n", "<A-t>", ":BufTermEnter<CR>" },
+  { "n", "<A-t>", ":BufTermEnter<CR>", M.default_opts },
 }
 
 M.treesitter_incremental_selection = {
@@ -80,67 +98,66 @@ M.treesitter_navigation = {
 }
 
 M.telescope_builtin = {
-  { "n", "<leader>ff", "find_files" },
-  { "n", "<leader>fg", "live_grep" },
-  { "n", "<leader>fb", "buffers" },
-  { "n", "<leader>fh", "help_tags" },
-  { "n", "<leader>gf", "git_files" },
+  { "n", "<leader>ff", "find_files", M.default_opts },
+  { "n", "<leader>fr", "oldfiles", M.default_opts },
+  { "n", "<leader>fg", "live_grep", M.default_opts },
+  { "n", "<leader>fb", "buffers", M.default_opts },
+  { "n", "<leader>fh", "help_tags", M.default_opts },
+  { "n", "<leader>gf", "git_files", M.default_opts },
 }
 
 M.gitsigns = {
-  { "n", "<leader>hp", "preview_hunk" },
+  { "n", "<leader>hp", "preview_hunk", M.default_opts },
 }
 
-M.lsp_lines_toggle = "<leader>l"
-
 M.lsp = {
-  { "n", "gd", "definition" },
-  { "n", "gD", "declaration" },
-  { "n", "gi", "implementation" },
-  { "n", "gt", "type_definition" },
+  { "n", "gd", "definition", M.default_opts },
+  { "n", "gD", "declaration", M.default_opts },
+  { "n", "gi", "implementation", M.default_opts },
+  { "n", "gt", "type_definition", M.default_opts },
 
-  { "n", "gr", "references" },
-  -- { "n", "<C-h>", "signature_help" }, -- never used this. todo: find out what this is.
-  { "n", "<F2>", "rename" },
-  { "n", "<F3>", "format" },
-  -- { "n", "<F4>", "code_action" }, -- never used this. todo: find out what this is.
+  { "n", "gr", "references", M.default_opts },
+  -- { "n", "<C-h>", "signature_help", M.default_opts }, -- never used this. todo: find out what this is.
+  { "n", "<F2>", "rename", M.default_opts },
+  { "n", "<F3>", "format", M.default_opts },
+  -- { "n", "<F4>", "code_action", M.default_opts}, -- never used this. todo: find out what this is.
 }
 
 M.diagnostic = {
-  { "n", "K", "open_float" },
-  -- use q to get out of float.
-  { "n", "[d", "goto_prev" },
-  { "n", "]d", "goto_next" },
+  { "n", "K", "open_float", M.default_opts },
+  -- use <Esc> to get out of float.
+  { "n", "[d", "goto_prev", M.default_opts },
+  { "n", "]d", "goto_next", M.default_opts },
 }
 
 M.cmp = {
   -- `Enter` key to confirm completion
-  { "<CR>", "confirm", { select = false } },
+  { "<CR>", "confirm", { select = false }, M.default_opts },
 
   -- Ctrl+Space to trigger completion menu
-  { "<C-Space>", "complete", nil },
+  { "<C-Space>", "complete", nil, M.default_opts },
 
   -- Ctrl+e to abort completion. Useful while supertabbing.
-  { "<C-e>", "abort", nil },
+  { "<C-e>", "abort", nil, M.default_opts },
 
   -- Scroll up and down in the completion documentation
-  { "<PageUp>", "scroll_docs", -4 },
-  { "<PageDown>", "scroll_docs", 4 },
+  { "<PageUp>", "scroll_docs", -4, M.default_opts },
+  { "<PageDown>", "scroll_docs", 4, M.default_opts },
 }
 
 M.lsp_zero_cmp_actions = {
-  { "<Tab>", "luasnip_supertab", nil },
-  { "<S-Tab>", "luasnip_shift_supertab", nil },
+  { "<Tab>", "luasnip_supertab", nil, M.default_opts },
+  { "<S-Tab>", "luasnip_shift_supertab", nil, M.default_opts },
 }
 
 M.dap = {
   -- set breakpoint
-  { "n", "<leader>b", "toggle_breakpoint" },
+  { "n", "<leader>b", "toggle_breakpoint", M.default_opts },
 }
 
 M.dapui = {
   -- launch debugger
-  { "n", "<leader>d", "toggle" },
+  { "n", "<leader>d", "toggle", M.default_opts },
 }
 
 M.comment = {
@@ -184,10 +201,8 @@ M.surround = {
 }
 
 M.fugitive = {
-  { "n", "<leader>gd", ":Gvdiffsplit<CR>zR" },
+  { "n", "<leader>gd", ":Gvdiffsplit<CR>zR", M.default_opts },
 }
-
-M.mini_files_toggle = "<leader>m"
 
 M.mini_files = {
   close = "<Esc>",
@@ -203,6 +218,16 @@ M.mini_files = {
   trim_right = ">",
 }
 
-M.undotree_toggle = "<leader>u"
+M.special = {
+  mini_files_toggle = function(rhs)
+    return { "n", "<leader>m", rhs, M.default_opts }
+  end,
+  lsp_lines_toggle = function(rhs)
+    return { "n", "<leader>l", rhs, M.default_opts }
+  end,
+  undotree_toggle = function(rhs)
+    return { "n", "<leader>", rhs, M.default_opts }
+  end,
+}
 
 return M

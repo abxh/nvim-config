@@ -26,20 +26,19 @@ o.viewoptions = "folds,cursor,"
 o.viewdir = "/tmp/view//"
 
 o.ignorecase = true
-o.smartcase = true
+-- o.smartcase = true
 
 o.updatetime = 50
 o.isfname:append("@-@")
 
 local keymaps = require("keymaps")
-local opts = { noremap = true, silent = true }
 if keymaps.leaderkey ~= nil then
-  vim.keymap.set("", keymaps.leaderkey, "<Nop>", opts)
+  vim.keymap.set("", keymaps.leaderkey, "<Nop>", keymaps.default_opts)
   vim.g.mapleader = keymaps.leaderkey
   vim.g.maplocalleader = keymaps.leaderkey
 end
 for _, value in pairs(keymaps.core) do
-  vim.keymap.set(unpack(vim.list_extend(value, opts)))
+  vim.keymap.set(unpack(value))
 end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
