@@ -309,6 +309,35 @@ return {
     },
     -- }}}
 
+    -- minimal startup screen: {{{
+    {
+      "Yoolayn/nvim-intro",
+      opts = {
+        intro = {
+          "███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗   ",
+          "████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║   ",
+          "██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║   ",
+          "██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║   ",
+          "██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║   ",
+          "╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝   ",
+          "                                                         ",
+          "  type :Lazy<Enter>        ->   to update plugins        ",
+          "  type :Mason<Enter>       ->   to update lsp and friends",
+          "  type :checkhealth<Enter> ->   to check nvim comp issues",
+          "                                                         ",
+          "  press <leader>ff         ->   to find files            ",
+          "  press <leader>fr         ->   to find recent files     ",
+          "  type :Git<Enter>         ->   to start fugitive        ",
+        },
+        color = "#f7f3f2",
+        scratch = true,
+        highlights = {
+          ["<Enter>"] = "#187df0",
+        },
+      },
+    },
+    -- }}}
+
     -- }}}
   },
   { install = { colorscheme = { "gruvbox-material" } } },
