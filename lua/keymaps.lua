@@ -226,7 +226,7 @@ M.special = {
     return { "n", "<leader>l", rhs, M.default_opts }
   end,
   undotree_toggle = function(rhs)
-    return { "n", "<leader>", rhs, M.default_opts }
+    return { "n", "<leader>u", rhs, M.default_opts }
   end,
 }
 

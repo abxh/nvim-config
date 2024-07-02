@@ -25,7 +25,7 @@ o.swapfile = false
 o.viewoptions = "folds,cursor,"
 o.viewdir = "/tmp/view//"
 
-o.ignorecase = true
+-- o.ignorecase = true
 -- o.smartcase = true
 
 o.updatetime = 50

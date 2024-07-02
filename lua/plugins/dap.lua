@@ -82,6 +82,7 @@ dapui.setup({
       elements = {
         "scopes",
         "stacks",
+        "console",
       },
       size = 0.3,
       position = "left",
