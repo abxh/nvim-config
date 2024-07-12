@@ -52,8 +52,10 @@ M.core = {
   { "n", "<leader>p", '"+p', M.default_opts },
   { "v", "<leader>p", 'c<Esc>"+p', M.default_opts },
 
-  -- exit terminal
-  { "t", "<A-S-q>", "<C-\\><C-n>", M.default_opts },
+  -- get out of / exit terminal
+  { "t", "<Esc>", "<C-\\><C-n>", M.default_opts },
+  { "t", "<A-S-q>", "<C-\\><C-n>:q!<CR>", M.default_opts },
+  { "n", "<A-S-t>", ":split<CR>:terminal<CR>", M.default_opts },
 
   -- windows split / close
   { "n", "<A-v>", ":vsplit<CR>", M.default_opts },
