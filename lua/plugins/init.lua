@@ -284,15 +284,14 @@ return {
     -- pretty diagnostics: {{{
     {
       "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-      init = function()
-        vim.diagnostic.config({ virtual_text = false, virtual_lines = false })
+      config = function()
+        vim.diagnostic.config({ virtual_text = false, virtual_lines = { only_current_line = true } })
+        require("lsp_lines").setup()
 
         if require("keymaps").lsp_lines_toggle ~= nil then
           vim.keymap.set(unpack(require("keymaps").special.lsp_lines_toggle(require("lsp_lines").toggle)))
         end
       end,
-      opts = {},
-      event = "VeryLazy",
     },
     -- }}}
 
@@ -306,35 +305,6 @@ return {
       config = function()
         require("notify").setup({ render = "wrapped-compact" })
       end,
-    },
-    -- }}}
-
-    -- minimal startup screen: {{{
-    {
-      "Yoolayn/nvim-intro",
-      opts = {
-        intro = {
-          "███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗   ",
-          "████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║   ",
-          "██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║   ",
-          "██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║   ",
-          "██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║   ",
-          "╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝   ",
-          "                                                         ",
-          "  type :Lazy<Enter>        ->   to update plugins        ",
-          "  type :Mason<Enter>       ->   to update lsp and friends",
-          "  type :checkhealth<Enter> ->   to check nvim comp issues",
-          "                                                         ",
-          "  press <leader>ff         ->   to find files            ",
-          "  press <leader>fr         ->   to find recent files     ",
-          "  type :Git<Enter>         ->   to start fugitive        ",
-        },
-        color = "#f7f3f2",
-        scratch = true,
-        highlights = {
-          ["<Enter>"] = "#187df0",
-        },
-      },
     },
     -- }}}
 
