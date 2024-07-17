@@ -257,7 +257,7 @@ return {
 
     -- pretty folds: {{{
     {
-      "anuvyklack/pretty-fold.nvim",
+      "bbjornstad/pretty-fold.nvim",
       opts = {
         sections = {
           left = {
@@ -304,6 +304,16 @@ return {
       end,
       config = function()
         require("notify").setup({ render = "wrapped-compact" })
+      end,
+    },
+    -- }}}
+
+    -- minimal startup screen: {{{
+    {
+      "goolord/alpha-nvim",
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+      config = function()
+        require("alpha").setup(require("alpha.themes.startify").config)
       end,
     },
     -- }}}
