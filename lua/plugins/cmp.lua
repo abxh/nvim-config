@@ -64,7 +64,7 @@ cmp.setup({
   end,
 
   -- ghost text:
-  experimental = { ghost_text = true },
+  experimental = { ghost_text = { enabled = true } },
 })
 
 -- Use git and buffer source for `gitcommit`
