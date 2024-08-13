@@ -122,7 +122,7 @@ M.lsp = {
   -- { "n", "<C-h>", "signature_help", M.default_opts }, -- never used this. todo: find out what this is.
   { "n", "<F2>", "rename", M.default_opts },
   { "n", "<F3>", "format", M.default_opts },
-  -- { "n", "<F4>", "code_action", M.default_opts}, -- never used this. todo: find out what this is.
+  { "n", "<F4>", "code_action", M.default_opts },
 }
 
 M.diagnostic = {

@@ -1,6 +1,5 @@
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
-    -- as per the example in nvim-treesitter for the things that "should" be installed + json/jsonc + yaml
     "c",
     "lua",
     "vim",
@@ -9,17 +8,15 @@ require("nvim-treesitter.configs").setup({
     "json",
     "jsonc",
     "yaml",
-
-    -- my own reqs (for now):
-    "cpp",
     "bash",
     "python",
     "markdown",
     "nasm",
+    "cpp",
   },
   highlight = {
     enable = true,
-    disable = { "lua", },
+    disable = { "lua" },
     additional_vim_regex_highlighting = false,
   },
   indent = {

@@ -41,14 +41,14 @@ lsp_zero.on_attach(function(_, bufnr)
 end)
 
 require("mason-lspconfig").setup({
-  ensured_installed = vim.list_extend(lsp_servers, lsp_servers_manual),
+  ensured_installed = lsp_servers,
   handlers = {
     lsp_zero.default_setup,
   },
 })
 
 local lspconfig = require("lspconfig")
-for _, server_name in pairs(lsp_servers) do
+for _, server_name in pairs(vim.list_extend(lsp_servers, lsp_servers_manual)) do
   local specified, opts = pcall(require, "lspconfigs." .. server_name)
   if specified then
     lspconfig[server_name].setup(opts)
