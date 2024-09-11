@@ -6,7 +6,9 @@ local lsp_servers = {
   "pyright",
   "clangd",
 }
-local lsp_servers_manual = {}
+local lsp_servers_manual = {
+  "hls",
+}
 local diagnostic_opts = {
   header = false,
   border = "none",
@@ -19,9 +21,18 @@ local diagnostic_opts = {
 local lsp_signature_opts = {
   bind = true,
   handler_opts = {
-    border = "single",
+    header = false,
+    border = "none",
+    focusable = true,
+    prefix = " ",
+    close_events = { "CursorMoved", "InsertEnter", "FocusLost" },
+    source = "always",
+    scope = "cursor",
   },
   hint_enable = false,
+  -- assuming these are reasonable defaults and putting them here..
+  move_cursor_key = "K",
+  keymaps = { { "j", "<C-o>j" }, { "k", "<C-o>k" }, { "h", "<C-o>h" }, { "l", "<C-o>l" } },
 }
 
 vim.diagnostic.config({ float = diagnostic_opts })

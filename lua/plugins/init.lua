@@ -105,7 +105,7 @@ return {
         "saadparwaiz1/cmp_luasnip",
 
         "onsails/lspkind.nvim",
-        "ray-x/lsp_signature.nvim",
+        { "abxh/lsp_signature.nvim", branch = "patch" },
 
         "jay-babu/mason-null-ls.nvim",
         "nvimtools/none-ls.nvim",
