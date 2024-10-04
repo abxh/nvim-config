@@ -1,9 +1,10 @@
 local keymaps = require("keymaps")
 local lsp_servers = {
+  -- try installing npm and cargo externally to install the following using mason:
   "lua_ls",
-  "jsonls",
-  "yamlls",
-  "pyright",
+  "jsonls",  -- requires npm
+  "yamlls",  -- requires npm
+  "pyright", -- requires npm
   "clangd",
 }
 local lsp_servers_manual = {
