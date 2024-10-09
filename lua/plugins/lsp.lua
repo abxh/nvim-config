@@ -32,7 +32,7 @@ local lsp_signature_opts = {
   },
   hint_enable = false,
   -- assuming these are reasonable defaults and putting them here..
-  move_cursor_key = "K",
+  -- move_cursor_key = "K",
   keymaps = { { "j", "<C-o>j" }, { "k", "<C-o>k" }, { "h", "<C-o>h" }, { "l", "<C-o>l" } },
 }
 
