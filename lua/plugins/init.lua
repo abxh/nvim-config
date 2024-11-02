@@ -5,7 +5,10 @@ return {
       dependencies = { "hrsh7th/nvim-cmp" },
       "windwp/nvim-autopairs",
       event = "InsertEnter",
-      init = require("plugins.integrations").autopairs_cmp,
+      config = function()
+        require("nvim-autopairs").setup()
+        require("plugins.integrations").autopairs_cmp()
+      end,
     },
     -- }}}
 
@@ -49,12 +52,12 @@ return {
     -- git support: {{{
     {
       "tpope/vim-fugitive",
-      event = "VeryLazy",
-      init = function()
+      config = function()
         for _, value in pairs(require("keymaps").fugitive) do
           vim.keymap.set(unpack(vim.list_extend(value, { noremap = true })))
         end
       end,
+      event = "VeryLazy",
     },
     {
       "lewis6991/gitsigns.nvim",
@@ -74,6 +77,7 @@ return {
           require("plugins.integrations").gitsigns_keymap(bufnr)
         end,
       },
+      event = "VeryLazy",
     },
     -- }}}
 
@@ -122,6 +126,7 @@ return {
         require("plugins.null-ls")
         require("plugins.dap")
       end,
+      event = "VeryLazy",
     },
     -- }}}
 
@@ -131,9 +136,12 @@ return {
       opts = {
         mappings = require("keymaps").mini_files,
       },
-      init = function()
-        vim.keymap.set(unpack(require("keymaps").special.mini_files_toggle(require("mini.files").open)))
+      config = function()
+        if require("keymaps").special.mini_files_toggle ~= nil then
+          vim.keymap.set(unpack(require("keymaps").special.mini_files_toggle(require("mini.files").open)))
+        end
       end,
+      event = "VeryLazy",
     },
     -- }}}
 
@@ -141,8 +149,8 @@ return {
     {
       "kylechui/nvim-surround",
       version = "*",
-      event = "VeryLazy",
       opts = { keymaps = require("keymaps").comment },
+      event = "VeryLazy",
     },
     -- }}}
 
@@ -156,7 +164,7 @@ return {
           borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
         },
       },
-      init = function()
+      config = function()
         local m = require("telescope.builtin")
         for _, v in pairs(require("keymaps").telescope_builtin) do
           vim.keymap.set(v[1], v[2], m[v[3]], {})
@@ -174,8 +182,8 @@ return {
         require("plugins.treesitter")
       end,
       dependencies = {
-        "nvim-treesitter/nvim-treesitter-refactor",
         "nvim-treesitter/nvim-treesitter-textobjects",
+        "nvim-treesitter/nvim-treesitter-refactor",
       },
     },
     -- }}}
@@ -184,7 +192,7 @@ return {
     "tpope/vim-sleuth",
     {
       "ton/vim-bufsurf",
-      init = function()
+      config = function()
         for _, value in pairs(require("keymaps").bufsurf) do
           vim.keymap.set(unpack(value))
         end
@@ -192,27 +200,25 @@ return {
     },
     {
       "boltlessengineer/bufterm.nvim",
-      init = function()
+      config = function()
+        require("bufterm").setup()
         for _, value in pairs(require("keymaps").bufterm) do
           vim.keymap.set(unpack(value))
         end
       end,
-      config = true,
     },
     {
       "mbbill/undotree",
-      init = function()
-        vim.keymap.set(unpack(require("keymaps").special.undotree_toggle(vim.cmd.UndotreeToggle)))
+      config = function()
+        if require("keymaps").special.undotree_toggle ~= nil then
+          vim.keymap.set(unpack(require("keymaps").special.undotree_toggle(vim.cmd.UndotreeToggle)))
+        end
       end,
+      event = "VeryLazy",
     },
     -- }}}
 
     -- nonessential: {{{
-
-    -- filetype syntax support: {{{
-    "kovetskiy/sxhkd-vim",
-    "Fymyte/rasi.vim",
-    -- }}}
 
     -- show html colors and etc.: {{{
     {
@@ -278,18 +284,25 @@ return {
     -- }}}
 
     -- pretty indentation: {{{
-    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+    {
+      "lukas-reineke/indent-blankline.nvim",
+      main = "ibl",
+      opts = {},
+    },
     -- }}}
 
     -- pretty diagnostics: {{{
     {
       "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-      config = function()
+      init = function()
         vim.diagnostic.config({ virtual_text = false, virtual_lines = { only_current_line = true } })
-        require("lsp_lines").setup()
+      end,
+      config = function()
+        local lsp_lines = require("lsp_lines")
+        lsp_lines.setup()
 
-        if require("keymaps").lsp_lines_toggle ~= nil then
-          vim.keymap.set(unpack(require("keymaps").special.lsp_lines_toggle(require("lsp_lines").toggle)))
+        if require("keymaps").special.lsp_lines_toggle ~= nil then
+          vim.keymap.set(unpack(require("keymaps").special.lsp_lines_toggle(lsp_lines.toggle)))
         end
       end,
     },
@@ -300,11 +313,13 @@ return {
       "rcarriga/nvim-notify",
       init = function()
         vim.opt.termguicolors = true
-        vim.notify = require("notify")
       end,
       config = function()
-        require("notify").setup({ render = "wrapped-compact" })
+        local notify_custom = require("notify")
+        notify_custom.setup({ render = "wrapped-compact" })
+        vim.notify = notify_custom
       end,
+      event = "VeryLazy",
     },
     -- }}}
 
@@ -312,10 +327,17 @@ return {
     {
       "goolord/alpha-nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" },
-      config = function()
-        require("alpha").setup(require("alpha.themes.startify").config)
+      init = function()
+        if vim.fn.argc() == 0 then
+          require("alpha").setup(require("alpha.themes.startify").config)
+        end
       end,
+      cmd = "Alpha",
     },
+    -- }}}
+
+    -- measure startup time: {{{
+    { "dstein64/vim-startuptime", cmd = "StartupTime" },
     -- }}}
 
     -- }}}

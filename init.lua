@@ -1,3 +1,5 @@
+vim.loader.enable() -- experimental neovim feature; cache neovim modules
+
 require("autocmds")
 vim.cmd("source " .. vim.fn.stdpath("config") .. "/lua/autocmds.vim")
 
