@@ -1,14 +1,14 @@
 local keymaps = require("keymaps")
 local lsp_servers = {
-  -- try installing npm and cargo externally to install the following using mason:
   "lua_ls",
-  "jsonls",  -- requires npm
-  "yamlls",  -- requires npm
-  "pyright", -- requires npm
-  "clangd",
 }
 local lsp_servers_manual = {
+  "yamlls",
+  "jsonls",
+  "pyright",
+  "clangd",
   "hls",
+  "zls",
 }
 local diagnostic_opts = {
   header = false,
@@ -19,7 +19,7 @@ local diagnostic_opts = {
   source = "always",
   scope = "cursor",
 }
-local lsp_signature_opts = {
+local lsp_signature_opts = vim.tbl_extend("force", {
   bind = true,
   handler_opts = {
     header = false,
@@ -31,10 +31,7 @@ local lsp_signature_opts = {
     scope = "cursor",
   },
   hint_enable = false,
-  -- assuming these are reasonable defaults and putting them here..
-  -- move_cursor_key = "K",
-  keymaps = { { "j", "<C-o>j" }, { "k", "<C-o>k" }, { "h", "<C-o>h" }, { "l", "<C-o>l" } },
-}
+}, keymaps.lsp_signature_opts)
 
 vim.diagnostic.config({ float = diagnostic_opts })
 for _, v in pairs(keymaps.diagnostic) do

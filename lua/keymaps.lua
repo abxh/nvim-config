@@ -132,6 +132,11 @@ M.diagnostic = {
   { "n", "]d", "goto_next", M.default_opts },
 }
 
+M.lsp_signature_opts = {
+  move_cursor_key = "<C-k>", -- insert mode, move into float
+  keymaps = { { "j", "<C-o>j" }, { "k", "<C-o>k" }, { "h", "<C-o>h" }, { "l", "<C-o>l" } },
+}
+
 M.cmp = {
   -- `Enter` key to confirm completion
   { "<CR>", "confirm", { select = false }, M.default_opts },

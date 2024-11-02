@@ -13,6 +13,7 @@ require("nvim-treesitter.configs").setup({
     "markdown",
     "nasm",
     "cpp",
+    "zig"
   },
   highlight = {
     enable = true,
