@@ -1,6 +1,6 @@
-require("mason-nvim-dap").setup({
-  ensure_installed = { "cppdbg" },
-})
+-- require("mason-nvim-dap").setup({
+--   ensure_installed = { "cppdbg" },
+-- })
 
 vim.g.dap_virtual_text = true
 

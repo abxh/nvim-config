@@ -83,42 +83,49 @@ return {
 
     -- lsp, cmp and friends: {{{
     {
-      "VonHeikemen/lsp-zero.nvim",
-      branch = "v3.x",
+      "neovim/nvim-lspconfig",
       dependencies = {
+	{ "VonHeikemen/lsp-zero.nvim", branch = "v3.x", }, -- this plugin is key to simplifying your lsp config
+
+        -- mason-related things:
         { "williamboman/mason.nvim", opts = {} },
         "williamboman/mason-lspconfig.nvim",
-        "neovim/nvim-lspconfig",
+        -- "jay-babu/mason-nvim-dap.nvim",
+        -- "jay-babu/mason-null-ls.nvim",
 
+        -- lsp-setup:
+        "folke/neoconf.nvim",
+        "folke/neodev.nvim",
+
+        -- autocompletion related things: {{{
         "hrsh7th/nvim-cmp",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-cmdline",
-        "petertriho/cmp-git",
-        "paopaol/cmp-doxygen",
+        -- "petertriho/cmp-git",
+        -- "paopaol/cmp-doxygen",
 
-        "nvim-neotest/nvim-nio",
-        "jay-babu/mason-nvim-dap.nvim",
-        "mfussenegger/nvim-dap",
-        "rcarriga/nvim-dap-ui",
-        "theHamsta/nvim-dap-virtual-text",
+        "b0o/schemastore.nvim",
+        { "microsoft/python-type-stubs", cond = false },
 
         { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
         "rafamadriz/friendly-snippets",
         "saadparwaiz1/cmp_luasnip",
+        -- }}}
 
-        "onsails/lspkind.nvim",
-        "ray-x/lsp_signature.nvim",
-
-        "jay-babu/mason-null-ls.nvim",
+        -- formatting:
         "nvimtools/none-ls.nvim",
 
-        "folke/neoconf.nvim",
-        "folke/neodev.nvim",
+        -- debugging:
+        "mfussenegger/nvim-dap",
+        "rcarriga/nvim-dap-ui",
+        "theHamsta/nvim-dap-virtual-text",
+        "nvim-neotest/nvim-nio",
 
-        "b0o/schemastore.nvim",
-        { "microsoft/python-type-stubs", cond = false },
+        -- shiny things:
+        "onsails/lspkind.nvim",
+        "ray-x/lsp_signature.nvim",
       },
       config = function()
         require("plugins.lsp")

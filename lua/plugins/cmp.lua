@@ -3,7 +3,7 @@ local cmp_sources = {
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "luasnip" },
-    { name = "doxygen" },
+    -- { name = "doxygen" },
   },
   {
     { name = "path" },

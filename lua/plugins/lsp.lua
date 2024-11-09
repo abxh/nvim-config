@@ -50,7 +50,7 @@ lsp_zero.on_attach(function(_, bufnr)
 end)
 
 require("mason-lspconfig").setup({
-  ensured_installed = lsp_servers,
+  automatic_installation = { exclude = lsp_servers_manual },
   handlers = {
     lsp_zero.default_setup,
   },
