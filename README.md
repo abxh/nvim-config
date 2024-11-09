@@ -4,6 +4,7 @@
 [gruvbox-material](https://github.com/sainnhe/gruvbox-material) color theme with some [overrides](https://github.com/abxh/nvim-config/blob/5e75227c09713d9385ce3f4fe48c930459040592/lua/plugins/init.lua#L20-L23).
 
 ## Change Log
+- [dc3fd0d](https://github.com/abxh/nvim-config/tree/dc3fd0dab399424c108cab6ccca91a81c36cbe14): Minor bug fixes in config. Improvements.
 - [88b3d47](https://github.com/abxh/nvim-config/tree/88b3d47561698dc42f6679b07bb2a9d1903d34a3): Update plugins. Fix bugs. Remove unmainted dashboard.
 - [b76b527](https://github.com/abxh/nvim-config/tree/b76b52704243a5109f72848733405735e51bee1e): Fix a few annoying quirks.
 - [50c323a](https://github.com/abxh/nvim-config/tree/50c323afdde0981f99f0cc28f73220eafd285a7b): improve keybinds (both config layout and minor changes). minimal startup plugin.
