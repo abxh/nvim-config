@@ -93,9 +93,10 @@ return {
         -- "jay-babu/mason-nvim-dap.nvim",
         -- "jay-babu/mason-null-ls.nvim",
 
-        -- lsp-setup:
+        -- general setup:
         "folke/neoconf.nvim",
         "folke/neodev.nvim",
+        "nvim-neotest/nvim-nio",
 
         -- autocompletion related things: {{{
         "hrsh7th/nvim-cmp",
@@ -121,7 +122,6 @@ return {
         "mfussenegger/nvim-dap",
         "rcarriga/nvim-dap-ui",
         "theHamsta/nvim-dap-virtual-text",
-        "nvim-neotest/nvim-nio",
 
         -- shiny things:
         "onsails/lspkind.nvim",
