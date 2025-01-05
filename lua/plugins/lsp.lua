@@ -9,6 +9,8 @@ local lsp_servers_manual = {
   "clangd",
   "hls",
   "zls",
+  "cmake",
+  "glsl_analyzer",
 }
 local diagnostic_opts = {
   header = false,

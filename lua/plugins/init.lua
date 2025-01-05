@@ -85,10 +85,10 @@ return {
     {
       "neovim/nvim-lspconfig",
       dependencies = {
-	{ "VonHeikemen/lsp-zero.nvim", branch = "v3.x", }, -- this plugin is key to simplifying your lsp config
+        { "VonHeikemen/lsp-zero.nvim", branch = "v3.x", }, -- this plugin is key to simplifying your lsp config
 
         -- mason-related things:
-        { "williamboman/mason.nvim", opts = {} },
+        { "williamboman/mason.nvim",   opts = {} },
         "williamboman/mason-lspconfig.nvim",
         -- "jay-babu/mason-nvim-dap.nvim",
         -- "jay-babu/mason-null-ls.nvim",
@@ -110,7 +110,7 @@ return {
         "b0o/schemastore.nvim",
         { "microsoft/python-type-stubs", cond = false },
 
-        { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
+        { "L3MON4D3/LuaSnip",            version = "v2.*", build = "make install_jsregexp" },
         "rafamadriz/friendly-snippets",
         "saadparwaiz1/cmp_luasnip",
         -- }}}
@@ -140,10 +140,11 @@ return {
     -- mini.files: {{{
     {
       "echasnovski/mini.files",
-      opts = {
-        mappings = require("keymaps").mini_files,
-      },
       config = function()
+        require('mini.files').setup({
+          mappings = require("keymaps").mini_files,
+          options = { permanent_delete = false, },
+        })
         if require("keymaps").special.mini_files_toggle ~= nil then
           vim.keymap.set(unpack(require("keymaps").special.mini_files_toggle(require("mini.files").open)))
         end
@@ -227,16 +228,6 @@ return {
 
     -- nonessential: {{{
 
-    -- show html colors and etc.: {{{
-    {
-      "norcalli/nvim-colorizer.lua",
-      priority = 0,
-      config = function()
-        require("colorizer").setup()
-      end,
-    },
-    -- }}}
-
     -- pretty bar: {{{
     {
       "nvim-lualine/lualine.nvim",
@@ -312,21 +303,6 @@ return {
           vim.keymap.set(unpack(require("keymaps").special.lsp_lines_toggle(lsp_lines.toggle)))
         end
       end,
-    },
-    -- }}}
-
-    -- pretty notifications: {{{
-    {
-      "rcarriga/nvim-notify",
-      init = function()
-        vim.opt.termguicolors = true
-      end,
-      config = function()
-        local notify_custom = require("notify")
-        notify_custom.setup({ render = "wrapped-compact" })
-        vim.notify = notify_custom
-      end,
-      event = "VeryLazy",
     },
     -- }}}
 
