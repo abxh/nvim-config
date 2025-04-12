@@ -119,7 +119,7 @@ M.lsp = {
   { "n", "gt", "type_definition", M.default_opts },
 
   { "n", "gr", "references", M.default_opts },
-  -- { "n", "<C-h>", "signature_help", M.default_opts }, -- never used this. todo: find out what this is.
+  -- { "n", "<C-h>", "signature_help", M.default_opts },
   { "n", "<F2>", "rename", M.default_opts },
   { "n", "<F3>", "format", M.default_opts },
   { "n", "<F4>", "code_action", M.default_opts },
@@ -235,6 +235,10 @@ M.special = {
   undotree_toggle = function(rhs)
     return { "n", "<leader>u", rhs, M.default_opts }
   end,
+  neogen_func = function(rhs)
+    return { "n", "<leader>n", rhs, M.default_opts }
+  end,
+
 }
 
 return M

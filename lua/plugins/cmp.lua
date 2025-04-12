@@ -1,9 +1,7 @@
 local cmp_sources = {
   {
     { name = "nvim_lsp" },
-    { name = "nvim_lua" },
     { name = "luasnip" },
-    -- { name = "doxygen" },
   },
   {
     { name = "path" },
@@ -64,7 +62,7 @@ cmp.setup({
   end,
 
   -- ghost text:
-  experimental = { ghost_text = { hl_group = "NonText" } },
+  -- experimental = { ghost_text = { hl_group = "NonText" } },
 })
 
 -- Use git and buffer source for `gitcommit`
@@ -98,3 +96,11 @@ require("luasnip").filetype_extend("php", { "phpdoc" })
 require("luasnip").filetype_extend("kotlin", { "kdoc" })
 require("luasnip").filetype_extend("ruby", { "rdoc" })
 require("luasnip").filetype_extend("sh", { "shelldoc" })
+
+-- neogen:
+require("neogen").setup({
+  enabled = true,
+  input_after_comment = true,
+  snippet_engine = "luasnip",
+})
+vim.api.nvim_set_keymap(unpack(require("keymaps").special.neogen_func(":lua require('neogen').generate({ type = 'func' })<CR>")))

@@ -85,13 +85,11 @@ return {
     {
       "neovim/nvim-lspconfig",
       dependencies = {
-        { "VonHeikemen/lsp-zero.nvim", branch = "v3.x", }, -- this plugin is key to simplifying your lsp config
+        { "VonHeikemen/lsp-zero.nvim", branch = "v3.x" }, -- this plugin is key to simplifying your lsp config
 
         -- mason-related things:
-        { "williamboman/mason.nvim",   opts = {} },
+        { "williamboman/mason.nvim", opts = {} },
         "williamboman/mason-lspconfig.nvim",
-        -- "jay-babu/mason-nvim-dap.nvim",
-        -- "jay-babu/mason-null-ls.nvim",
 
         -- general setup:
         "folke/neoconf.nvim",
@@ -104,19 +102,24 @@ return {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-cmdline",
-        -- "petertriho/cmp-git",
-        -- "paopaol/cmp-doxygen",
 
         "b0o/schemastore.nvim",
         { "microsoft/python-type-stubs", cond = false },
 
-        { "L3MON4D3/LuaSnip",            version = "v2.*", build = "make install_jsregexp" },
+        { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
         "rafamadriz/friendly-snippets",
         "saadparwaiz1/cmp_luasnip",
         -- }}}
 
-        -- formatting:
+        -- formatting / linting:
         "nvimtools/none-ls.nvim",
+        "nvimtools/none-ls-extras.nvim",
+
+        -- documentation (neogen):
+        {
+          "danymat/neogen",
+          config = true,
+        },
 
         -- debugging:
         "mfussenegger/nvim-dap",
@@ -124,8 +127,8 @@ return {
         "theHamsta/nvim-dap-virtual-text",
 
         -- shiny things:
-        "onsails/lspkind.nvim",
         "ray-x/lsp_signature.nvim",
+        "onsails/lspkind.nvim",
       },
       config = function()
         require("plugins.lsp")
@@ -141,9 +144,9 @@ return {
     {
       "echasnovski/mini.files",
       config = function()
-        require('mini.files').setup({
+        require("mini.files").setup({
           mappings = require("keymaps").mini_files,
-          options = { permanent_delete = false, },
+          options = { permanent_delete = false },
         })
         if require("keymaps").special.mini_files_toggle ~= nil then
           vim.keymap.set(unpack(require("keymaps").special.mini_files_toggle(require("mini.files").open)))
