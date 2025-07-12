@@ -2,6 +2,8 @@
 --   ensure_installed = { "cppdbg" },
 -- })
 
+-- https://github.com/mfussenegger/nvim-dap/wiki/C-C---Rust-(gdb-via--vscode-cpptools)
+
 vim.g.dap_virtual_text = true
 
 vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "red", linehl = "", numhl = "" })
@@ -60,6 +62,7 @@ dap.configurations.c = {
 
 dap.configurations.cpp = dap.configurations.c
 dap.configurations.nasm = dap.configurations.c
+dap.configurations.rust = dap.configurations.c
 
 require("dapui").setup()
 require("nvim-dap-virtual-text").setup()

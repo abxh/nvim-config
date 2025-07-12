@@ -19,7 +19,7 @@ null_ls.setup({
   sources = {
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.shfmt,
+    -- null_ls.builtins.formatting.shfmt,
     -- require("none-ls.diagnostics.cpplint"),
   },
 })

@@ -93,7 +93,7 @@ return {
 
         -- general setup:
         "folke/neoconf.nvim",
-        "folke/neodev.nvim",
+        { "folke/lazydev.nvim", ft = "lua", },
         "nvim-neotest/nvim-nio",
 
         -- autocompletion related things: {{{
