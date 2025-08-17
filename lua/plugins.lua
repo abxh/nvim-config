@@ -268,9 +268,16 @@ return function(keymaps)
         "stevearc/conform.nvim",
         opts = {
           formatters_by_ft = {
+            c = { 'clang_format' },
+            cpp = { 'clang_format' },
             lua = { "stylua" },
             python = { "isort", "black" },
             javascript = { "prettierd", "prettier", stop_after_first = true },
+          },
+          formatters = {
+            clang_format = {
+              prepend_args = { '--style=file', '--fallback-style=LLVM' },
+            },
           },
         },
         config = function(_, opts)
