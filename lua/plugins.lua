@@ -317,9 +317,9 @@ return function(keymaps)
             auto_show_delay_ms = 500,
             treesitter_highlighting = true,
           },
-          accept = { auto_brackets = { enabled = true } },
           list = { selection = { preselect = false, auto_insert = true } },
           completion = {
+            accept = { auto_brackets = { enabled = true } },
             menu = {
               border = "none",
               draw = {
