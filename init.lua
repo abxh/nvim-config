@@ -118,7 +118,7 @@ end, KEYMAP_OPTS)
 vim.keymap.set("n", "]d", function()
   vim.diagnostic.jump({ count = 1, float = true })
 end, KEYMAP_OPTS)
--- vim.keymap.set('n', 'K', vim.diagnostic.open_float, KEYMAP_OPTS)
+vim.keymap.set('n', '<C-w>d', vim.diagnostic.open_float, KEYMAP_OPTS)
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)
@@ -223,6 +223,8 @@ plugin_keymaps["blink.cmp"] = {
     "fallback",
   },
   ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+  ['<Up>'] = { 'select_prev', 'fallback' },
+  ['<Down>'] = { 'select_next', 'fallback' },
 
   -- use mouse instead of:
   -- ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },

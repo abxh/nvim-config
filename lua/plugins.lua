@@ -238,6 +238,10 @@ return function(keymaps)
           vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
         end,
       },
+      {
+        "windwp/nvim-ts-autotag",
+        opts = {},
+      },
       -- }}}
       -- lsp related things {{{
       {
@@ -268,15 +272,15 @@ return function(keymaps)
         "stevearc/conform.nvim",
         opts = {
           formatters_by_ft = {
-            c = { 'clang_format' },
-            cpp = { 'clang_format' },
+            c = { "clang_format" },
+            cpp = { "clang_format" },
             lua = { "stylua" },
             python = { "isort", "black" },
             javascript = { "prettierd", "prettier", stop_after_first = true },
           },
           formatters = {
             clang_format = {
-              prepend_args = { '--style=file', '--fallback-style=LLVM' },
+              prepend_args = { "--style=file", "--fallback-style=LLVM" },
             },
           },
         },
@@ -307,6 +311,14 @@ return function(keymaps)
           keymap = vim.tbl_deep_extend("error", {
             preset = "none",
           }, keymaps["blink.cmp"]),
+          documentation = {
+            window = { border = "none" },
+            auto_show = true,
+            auto_show_delay_ms = 500,
+            treesitter_highlighting = true,
+          },
+          accept = { auto_brackets = { enabled = true } },
+          list = { selection = { preselect = false, auto_insert = true } },
           completion = {
             menu = {
               border = "none",
@@ -343,12 +355,6 @@ return function(keymaps)
                 },
               },
             },
-            documentation = {
-              window = { border = "none" },
-              auto_show = true,
-              auto_show_delay_ms = 500,
-            },
-            list = { selection = { preselect = false, auto_insert = true } },
           },
           signature = { enabled = true, window = { border = "none" } },
           sources = {
