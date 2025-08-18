@@ -238,10 +238,6 @@ return function(keymaps)
           vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
         end,
       },
-      {
-        "windwp/nvim-ts-autotag",
-        opts = {},
-      },
       -- }}}
       -- lsp related things {{{
       {
@@ -311,15 +307,15 @@ return function(keymaps)
           keymap = vim.tbl_deep_extend("error", {
             preset = "none",
           }, keymaps["blink.cmp"]),
-          documentation = {
-            window = { border = "none" },
-            auto_show = true,
-            auto_show_delay_ms = 500,
-            treesitter_highlighting = true,
-          },
-          list = { selection = { preselect = false, auto_insert = true } },
           completion = {
+            documentation = {
+              window = { border = "none" },
+              auto_show = true,
+              auto_show_delay_ms = 500,
+              treesitter_highlighting = true,
+            },
             accept = { auto_brackets = { enabled = true } },
+            list = { selection = { preselect = false, auto_insert = true } },
             menu = {
               border = "none",
               draw = {
