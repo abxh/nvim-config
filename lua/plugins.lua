@@ -252,7 +252,7 @@ return function(keymaps)
           -- json schemas:
           -- "b0o/schemastore.nvim",
           -- python schemas:
-          -- { "microsoft/python-type-stubs", cond = false },
+          { "microsoft/python-type-stubs", cond = false },
         },
       },
       {
