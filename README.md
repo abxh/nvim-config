@@ -1,5 +1,7 @@
 # nvim-config
 
+Use `:checkhealth` and install any required binaries through `:Mason`.
+
 ## Rice
 [gruvbox-material](https://github.com/sainnhe/gruvbox-material) color theme with some [overrides](https://github.com/abxh/nvim-config/blob/5e75227c09713d9385ce3f4fe48c930459040592/lua/plugins/init.lua#L20-L23).
 
