@@ -169,69 +169,14 @@ return function(keymaps)
       -- treesitter: {{{
       {
         "nvim-treesitter/nvim-treesitter",
-        version = false,
         build = ":TSUpdate",
-        event = { "BufReadPost", "BufNewFile" },
-        dependencies = {
-          "nvim-treesitter/nvim-treesitter-refactor",
-          "nvim-treesitter/nvim-treesitter-textobjects",
-        },
+        lazy = false,
         opts = {
-          ensure_installed = {
-            "c",
-            "lua",
-            "query",
-            "vim",
-            "vimdoc",
-            "json",
-            "jsonc",
-            "yaml",
-            "markdown",
-          },
-          highlight = {
-            enable = true,
-            disable = function(lang, bufnr)
-              local disabled_for = {
-                -- "lua"
-              }
-              return disabled_for[lang] ~= nil or vim.api.nvim_buf_line_count(bufnr) > 2000
-            end,
-            additional_vim_regex_highlighting = { "latex" },
-          },
-          indent = {
-            enable = true,
-          },
-          incremental_selection = {
-            enable = true,
-            keymaps = keymaps.treesitter.incremental_selection,
-          },
-          refactor = {
-            highlight_definitions = {
-              enable = true,
-              clear_on_cursor_move = true, -- Set to false if you have an `updatetime` of ~100.
-            },
-            navigation = {
-              enable = true,
-              keymaps = keymaps.treesitter.navigation,
-            },
-          },
-          textobjects = {
-            select = vim.tbl_deep_extend("error", {
-              enable = true,
-              lookahead = true,
-              include_surrounding_whitespace = false,
-            }, keymaps.treesitter.textobjects.select),
-            move = vim.tbl_deep_extend("error", {
-              enable = true,
-              set_jumps = true, -- whether to set jumps in the jumplist
-            }, keymaps.treesitter.textobjects.move),
-            swap = vim.tbl_deep_extend("error", {
-              enable = true,
-            }, keymaps.treesitter.textobjects.swap),
-          },
+          install_dir = vim.fn.stdpath("data") .. "/site",
         },
-        config = function(_, opts)
-          require("nvim-treesitter.configs").setup(opts)
+        config = function()
+          -- treesitter fold support
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
           -- treesitter fold as default
           vim.opt.foldmethod = "expr"
@@ -273,10 +218,16 @@ return function(keymaps)
             lua = { "stylua" },
             python = { "isort", "black" },
             javascript = { "prettierd", "prettier", stop_after_first = true },
+            futhark = { "futhark_fmt" },
           },
           formatters = {
             clang_format = {
               prepend_args = { "--style=file", "--fallback-style=LLVM" },
+            },
+            futhark_fmt = {
+              command = "futhark",
+              args = { "fmt", "$FILENAME" },
+              stdin = false,
             },
           },
         },
@@ -297,7 +248,7 @@ return function(keymaps)
       {
         "saghen/blink.cmp",
         dependencies = {
-          { "L3MON4D3/LuaSnip", version = "v2.*" },
+          { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
           "rafamadriz/friendly-snippets",
           "onsails/lspkind.nvim",
           "danymat/neogen",
@@ -518,6 +469,8 @@ return function(keymaps)
         end,
       },
       -- }}}
+
+      "abxh/futhark-vim",
     },
     { install = { colorscheme = { "gruvbox-material" } } },
     { checker = { enabled = true } },

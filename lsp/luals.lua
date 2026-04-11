@@ -10,6 +10,9 @@ return {
       workspace = {
         checkThirdParty = false,
       },
+      diagnostics = {
+        globals = { "vim" },
+      },
     },
   },
 }

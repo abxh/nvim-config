@@ -118,24 +118,22 @@ end, KEYMAP_OPTS)
 vim.keymap.set("n", "]d", function()
   vim.diagnostic.jump({ count = 1, float = true })
 end, KEYMAP_OPTS)
-vim.keymap.set('n', '<C-w>d', vim.diagnostic.open_float, KEYMAP_OPTS)
+vim.keymap.set("n", "<C-w>d", vim.diagnostic.open_float, KEYMAP_OPTS)
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(event)
-    vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { buffer = event.buf })
-    vim.keymap.set({ "n", "x" }, "<F3>", function()
-      require("conform").format({ async = true })
-    end, { buffer = event.buf })
-    vim.keymap.set("n", "<F4>", vim.lsp.buf.code_action, { buffer = event.buf })
+local lsp_callback = function(event)
+  vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { buffer = event.buf })
+  vim.keymap.set({ "n", "x" }, "<F3>", function()
+    require("conform").format({ async = true })
+  end, { buffer = event.buf })
+  vim.keymap.set("n", "<F4>", vim.lsp.buf.code_action, { buffer = event.buf })
 
-    -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = event.buf })
-    vim.keymap.set({ "i", "s" }, "<C-s>", vim.lsp.buf.signature_help, { buffer = event.buf })
+  -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = event.buf })
+  vim.keymap.set({ "i", "s" }, "<C-s>", vim.lsp.buf.signature_help, { buffer = event.buf })
 
-    vim.keymap.set("n", "grr", vim.lsp.buf.references, { buffer = event.buf })
-    vim.keymap.set("n", "gri", vim.lsp.buf.implementation, { buffer = event.buf })
-    vim.keymap.set("n", "gO", vim.lsp.buf.document_symbol, { buffer = event.buf })
-  end,
-})
+  vim.keymap.set("n", "grr", vim.lsp.buf.references, { buffer = event.buf })
+  vim.keymap.set("n", "gri", vim.lsp.buf.implementation, { buffer = event.buf })
+  vim.keymap.set("n", "gO", vim.lsp.buf.document_symbol, { buffer = event.buf })
+end
 
 local plugin_keymaps = {}
 
@@ -223,80 +221,111 @@ plugin_keymaps["blink.cmp"] = {
     "fallback",
   },
   ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
-  ['<Up>'] = { 'select_prev', 'fallback' },
-  ['<Down>'] = { 'select_next', 'fallback' },
+  ["<Up>"] = { "select_prev", "fallback" },
+  ["<Down>"] = { "select_next", "fallback" },
 
   -- use mouse instead of:
   -- ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
   -- ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
 }
 
-plugin_keymaps.treesitter = {}
-
-plugin_keymaps.treesitter["incremental_selection"] = {
-  init_selection = "<S-l>",
-  node_incremental = "<S-l>",
-  -- scope_incremental = "grc",
-  node_decremental = "<S-h>",
-}
-
-plugin_keymaps.treesitter["navigation"] = {
-  goto_definition = "gnd",
-  list_definitions = "gnD",
-  -- list_definitions_toc = "gO",
-  goto_next_usage = "gnn",
-  goto_previous_usage = "gnN",
-}
-
-plugin_keymaps.treesitter.textobjects = {}
-
-plugin_keymaps.treesitter.textobjects["select"] = {
-  keymaps = {
-    -- You can use the capture groups defined in textobjects.scm
-    ["af"] = { query = "@function.outer", desc = "around a function" },
-    ["if"] = { query = "@function.inner", desc = "inner part of a function" },
-    ["ac"] = { query = "@class.outer", desc = "around a class" },
-    ["ic"] = { query = "@class.inner", desc = "inner part of a class" },
-    ["ai"] = { query = "@conditional.outer", desc = "around an if statement" },
-    ["ii"] = { query = "@conditional.inner", desc = "inner part of an if statement" },
-    ["al"] = { query = "@loop.outer", desc = "around a loop" },
-    ["il"] = { query = "@loop.inner", desc = "inner part of a loop" },
-    ["ap"] = { query = "@parameter.outer", desc = "around parameter" },
-    ["ip"] = { query = "@parameter.inner", desc = "inside a parameter" },
-  },
-  selection_modes = {
-    ["@parameter.outer"] = "v", -- charwise
-    ["@parameter.inner"] = "v", -- charwise
-    ["@function.outer"] = "v", -- charwise
-    ["@conditional.outer"] = "V", -- linewise
-    ["@loop.outer"] = "V", -- linewise
-    ["@class.outer"] = "<c-v>", -- blockwise
-  },
-}
-
-plugin_keymaps.treesitter.textobjects["move"] = {
-  goto_previous_start = {
-    ["[f"] = { query = "@function.outer", desc = "Previous function" },
-    ["[c"] = { query = "@class.outer", desc = "Previous class" },
-    ["[p"] = { query = "@parameter.inner", desc = "Previous parameter" },
-  },
-  goto_next_start = {
-    ["]f"] = { query = "@function.outer", desc = "Next function" },
-    ["]c"] = { query = "@class.outer", desc = "Next class" },
-    ["]p"] = { query = "@parameter.inner", desc = "Next parameter" },
-  },
-}
-
-plugin_keymaps.treesitter.textobjects["swap"] = {
-  swap_next = {
-    ["<leader>a"] = "@parameter.inner",
-  },
-  swap_previous = {
-    ["<leader>A"] = "@parameter.inner",
-  },
-}
+-- plugin_keymaps.treesitter = {}
+--
+-- plugin_keymaps.treesitter["incremental_selection"] = {
+--   init_selection = "<S-l>",
+--   node_incremental = "<S-l>",
+--   -- scope_incremental = "grc",
+--   node_decremental = "<S-h>",
+-- }
+--
+-- plugin_keymaps.treesitter["navigation"] = {
+--   goto_definition = "gnd",
+--   list_definitions = "gnD",
+--   -- list_definitions_toc = "gO",
+--   goto_next_usage = "gnn",
+--   goto_previous_usage = "gnN",
+-- }
+--
+-- plugin_keymaps.treesitter.textobjects = {}
+--
+-- plugin_keymaps.treesitter.textobjects["select"] = {
+--   keymaps = {
+--     -- You can use the capture groups defined in textobjects.scm
+--     ["af"] = { query = "@function.outer", desc = "around a function" },
+--     ["if"] = { query = "@function.inner", desc = "inner part of a function" },
+--     ["ac"] = { query = "@class.outer", desc = "around a class" },
+--     ["ic"] = { query = "@class.inner", desc = "inner part of a class" },
+--     ["ai"] = { query = "@conditional.outer", desc = "around an if statement" },
+--     ["ii"] = { query = "@conditional.inner", desc = "inner part of an if statement" },
+--     ["al"] = { query = "@loop.outer", desc = "around a loop" },
+--     ["il"] = { query = "@loop.inner", desc = "inner part of a loop" },
+--     ["ap"] = { query = "@parameter.outer", desc = "around parameter" },
+--     ["ip"] = { query = "@parameter.inner", desc = "inside a parameter" },
+--   },
+--   selection_modes = {
+--     ["@parameter.outer"] = "v", -- charwise
+--     ["@parameter.inner"] = "v", -- charwise
+--     ["@function.outer"] = "v", -- charwise
+--     ["@conditional.outer"] = "V", -- linewise
+--     ["@loop.outer"] = "V", -- linewise
+--     ["@class.outer"] = "<c-v>", -- blockwise
+--   },
+-- }
+--
+-- plugin_keymaps.treesitter.textobjects["move"] = {
+--   goto_previous_start = {
+--     ["[f"] = { query = "@function.outer", desc = "Previous function" },
+--     ["[c"] = { query = "@class.outer", desc = "Previous class" },
+--     ["[p"] = { query = "@parameter.inner", desc = "Previous parameter" },
+--   },
+--   goto_next_start = {
+--     ["]f"] = { query = "@function.outer", desc = "Next function" },
+--     ["]c"] = { query = "@class.outer", desc = "Next class" },
+--     ["]p"] = { query = "@parameter.inner", desc = "Next parameter" },
+--   },
+-- }
+--
+-- plugin_keymaps.treesitter.textobjects["swap"] = {
+--   swap_next = {
+--     ["<leader>a"] = "@parameter.inner",
+--   },
+--   swap_previous = {
+--     ["<leader>A"] = "@parameter.inner",
+--   },
+-- }
 
 -- autocommands --------------------------------------------------------------------------------------------------------
+
+-- enable lsp
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = lsp_callback,
+})
+
+-- enable treesitter if possible
+-- based on:
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("tree-sitter-enable", { clear = true }),
+  callback = function(args)
+    local bufnr = args.buf
+    local lang = vim.treesitter.language.get_lang(args.match)
+    if vim.api.nvim_buf_line_count(bufnr) > 2000 or not lang then
+      return
+    end
+
+    if vim.treesitter.query.get(lang, "highlights") then
+      vim.treesitter.start(args.buf)
+    end
+
+    if vim.treesitter.query.get(lang, "indents") then
+      vim.opt_local.indentexpr = 'v:lua.require("nvim-treesitter").indentexpr()'
+    end
+
+    if vim.treesitter.query.get(lang, "folds") then
+      vim.opt_local.foldmethod = "expr"
+      vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    end
+  end,
+})
 
 -- close terminal on `:wqall`.
 -- based on: https://github.com/Olical/conjure/issues/644
