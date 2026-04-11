@@ -302,13 +302,29 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- enable treesitter if possible
--- based on:
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("tree-sitter-enable", { clear = true }),
   callback = function(args)
+    if not vim.treesitter then
+      return
+    end
+
     local bufnr = args.buf
+    local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
+    if vim.api.nvim_buf_line_count(bufnr) > 2000 or filetype == "" then
+      return
+    end
+
     local lang = vim.treesitter.language.get_lang(args.match)
-    if vim.api.nvim_buf_line_count(bufnr) > 2000 or not lang then
+    if not lang then
+      -- Use regex based syntax-highlighting as fallback
+      vim.bo[bufnr].syntax = "ON"
+      return
+    end
+
+    -- check for existing parser
+    local ok_parser, parser = pcall(vim.treesitter.get_parser, bufnr, filetype)
+    if not ok_parser or not parser then
       return
     end
 
