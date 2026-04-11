@@ -218,17 +218,17 @@ return function(keymaps)
             lua = { "stylua" },
             python = { "isort", "black" },
             javascript = { "prettierd", "prettier", stop_after_first = true },
-            futhark = { "futhark_fmt" },
+            -- futhark = { "futhark_fmt" },
           },
           formatters = {
             clang_format = {
               prepend_args = { "--style=file", "--fallback-style=LLVM" },
             },
-            futhark_fmt = {
-              command = "futhark",
-              args = { "fmt", "$FILENAME" },
-              stdin = false,
-            },
+            -- futhark_fmt = {
+            --   command = "futhark",
+            --   args = { "fmt", "$FILENAME" },
+            --   stdin = false,
+            -- },
           },
         },
         config = function(_, opts)
@@ -470,7 +470,7 @@ return function(keymaps)
       },
       -- }}}
 
-      "abxh/futhark-vim",
+      -- "abxh/futhark-vim",
     },
     { install = { colorscheme = { "gruvbox-material" } } },
     { checker = { enabled = true } },
