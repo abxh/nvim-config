@@ -2,20 +2,7 @@ return function(keymaps)
   return {
     {
       -- comment motions: {{{
-      {
-        "numToStr/Comment.nvim",
-        dependencies = {
-          "nvim-treesitter/nvim-treesitter",
-          { "JoosepAlviste/nvim-ts-context-commentstring", opts = { enable_autocmd = false } },
-        },
-        event = "VeryLazy",
-        opts = keymaps["Comment"],
-        config = function(_, opts)
-          require("Comment").setup(vim.tbl_deep_extend("error", opts, {
-            pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-          }))
-        end,
-      },
+      { "nvim-mini/mini.comment", version = "*", opts = {} },
       -- }}}
       -- colorscheme: {{{
       {
@@ -284,7 +271,7 @@ return function(keymaps)
                           icon = dev_icon
                         end
                       else
-                        icon = require("lspkind").symbolic(ctx.kind, { mode = "symbol" })
+                        icon = require("lspkind").symbol_map[ctx.kind] or ""
                       end
                       return icon .. ctx.icon_gap
                     end,
