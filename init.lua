@@ -133,6 +133,15 @@ local lsp_callback = function(event)
   vim.keymap.set("n", "grr", vim.lsp.buf.references, { buffer = event.buf })
   vim.keymap.set("n", "gri", vim.lsp.buf.implementation, { buffer = event.buf })
   vim.keymap.set("n", "gO", vim.lsp.buf.document_symbol, { buffer = event.buf })
+
+  local client = vim.lsp.get_client_by_id(event.data.client_id)
+  if client and client.server_capabilities.inlayHintProvider then
+    local toggle_inlay = function()
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+    end
+    toggle_inlay()
+    vim.keymap.set("n", '<leader>h', toggle_inlay, KEYMAP_OPTS)
+  end
 end
 
 local plugin_keymaps = {}
@@ -359,7 +368,7 @@ vim.api.nvim_create_autocmd("ExitPre", {
 -- higlight selection on yank.
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end,
 })
 
