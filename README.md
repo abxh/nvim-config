@@ -6,6 +6,7 @@ Use `:checkhealth` and install any required binaries through `:Mason`.
 [gruvbox-material](https://github.com/sainnhe/gruvbox-material) color theme with some [overrides](https://github.com/abxh/nvim-config/blob/5e75227c09713d9385ce3f4fe48c930459040592/lua/plugins/init.lua#L20-L23).
 
 ## Change Log
+- [c07b98a](https://github.com/abxh/nvim-config/tree/c07b98a7c8977f98488e3acfff7227d34fc71bea): Minor fixes after treesitter. use inlay hints by default.
 - [faaeadc](https://github.com/abxh/nvim-config/tree/faaeadcfd5c5d71a39c0fcb14296613c0c8c9ea3): Fix config after breaking changes of treesitter. Disable treesitter-related keybindings since they were unused.
 - [bbf247b](https://github.com/abxh/nvim-config/tree/bbf247b7116a5db1ac9c7ec294a364caa4465392): Complete revision of configuration. Adapting to neovim v0.11+ features and plugins
 - [affa8b8](https://github.com/abxh/nvim-config/tree/affa8b84f97e0fe9406e9cb71575bd1c560db9fd): More improvements and fixes. Some plugin changes
